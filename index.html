@@ -22,10 +22,29 @@
 	<div class="row">
 
 	<div class="col-8">
+
+		<div class="buttonz">
+			<button type="button" name="button">Save</button>
+			<a href="./print.html"><button type="button" name="button">Print</button></a>
+			<button class="email-button" type="button" name="button">Email</button>
+				<form class="" action="index.html" method="post">
+					<input class="d-none hidden-email" type="email" name="email-input" value="" placeholder="enter your email">
+					<input class="d-none hidden-submit" type="submit" name="email-submit" value="Email my Photos">
+				</form>
+			<button type="button" name="button">Restart</button>
+		</div>
+
 	  <div class="camera">
 	    <video id="video">Video stream not available.</video>
 	    <button id="startbutton">Start</button>
 	  </div>
+
+		<div class="text-input">
+			<form class="" action="index.html" method="post">
+				<input type="text" name="" value="" placeholder="Photostrip Title">
+			</form>
+		</div>
+
 	  <canvas id="canvas1">
 	  </canvas>
 		<canvas id="canvas2">
