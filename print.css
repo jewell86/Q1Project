@@ -1,0 +1,10 @@
+#photo1, #photo2, #photo3, #photo4{
+  border: 1px solid black;
+  box-shadow: 2px 2px 3px black;
+  width:175px;
+  height:225px;
+}
+
+#canvas {
+  display:none;
+}

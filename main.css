@@ -1,15 +1,24 @@
 #video {
-  border: 1px solid black;
-  box-shadow: 2px 2px 3px black;
-  width:320px;
-  height:240px;
+  width:420px;
+  height:555px;
 }
 
 #photo1, #photo2, #photo3, #photo4{
-  border: 1px solid black;
-  box-shadow: 2px 2px 3px black;
-  width:175px;
-  height:225px;
+  width:140px;
+  height:185px;
+  /* filter: sepia(100%); */
+}
+
+.sepia {
+  filter: sepia(100%);
+}
+
+.grayscale {
+  filter: grayscale(100%);
+}
+
+.none {
+  filter: none;
 }
 
 #canvas {
@@ -17,20 +26,28 @@
 }
 
 .camera {
-  width: 340px;
-  display:inline-block;
+  width: 420px;
+  margin-top: 400px;
+  margin-left: 20px;
+
 }
 
 .output {
-  width: 175px;
-  height: 225px;
-  border: 1px solid black;
+  width: 140px;
+  height: 185px;
   display:block;
+  margin-left: 85px;
+  margin-top: 8px
+
+}
+
+.first {
+  margin-top: 365px;
+
 }
 
 #startbutton {
   display:block;
-  position:relative;
   margin-left:auto;
   margin-right:auto;
   bottom:32px;
@@ -40,4 +57,36 @@
   font-size: 14px;
   font-family: "Lucida Grande", "Arial", sans-serif;
   color: rgba(255, 255, 255, 1.0);
+  z-index: 5;
+}
+
+body {
+  background-image: url("./images/photobooth1.png");
+  background-size: 1400px 1400px;
+  background-repeat: no-repeat;
+  background-position: top center;
+
+}
+
+.buttonz {
+  margin-top: 630px;
+  margin-left: 300px;
+  display: inline-block;
+
+}
+
+.titles{
+  margin-top: 10px;
+  margin-left: 35px
+}
+
+.photo-title {
+  width: 140px;
+  height: 85px;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.photos {
+
 }

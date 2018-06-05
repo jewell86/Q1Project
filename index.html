@@ -9,72 +9,87 @@
 
 
 <body>
-<div class="container text-center">
-	<div class="jumbotron">
-		<h1>
-			PhotoBooth!
-		</h1>
-	</div>
 
-	<p>
-		Press 'start' to take 4 photos 2 seconds apart!
-	</p>
-	<div class="row">
+<div class="row">
 
-	<div class="col-8">
-
+	<div class="col-5">
 		<div class="buttonz">
-			<button type="button" name="button">Save</button>
-			<a href="./print.html"><button type="button" name="button">Print</button></a>
-			<button class="email-button" type="button" name="button">Email</button>
-				<form class="" action="index.html" method="post">
-					<input class="d-none hidden-email" type="email" name="email-input" value="" placeholder="enter your email">
-					<input class="d-none hidden-submit" type="submit" name="email-submit" value="Email my Photos">
-				</form>
-			<button type="button" name="button">Restart</button>
+
+		<div class="function-buttons">
+			<a id="dl-btn" href="#" download="glorious_selfie.png"><button type="button" class="btn btn-dark" name="button">Save</button></a>
+			<a href="./print.html"><button type="button" name="button" class="btn btn-dark">Print</button></a>
+			<button type="button" name="button" class="btn btn-dark">Restart</button>
+			<button type="button" name="button" class="btn btn-dark">Email</button>
 		</div>
 
-	  <div class="camera">
+		<div class="filter-buttons">
+			<button type="button" data-filter="grayscale" name="filter-button" class="btn btn-light filter-button">Black & White</button>
+			<button type="button" data-filter="sepia" name="filter-button" class="btn btn-light filter-button">Sepia</button>
+			<button type="button" data-filter="none" name="filter-button" class="btn btn-light filter-button">Color</button>
+		</div>
+
+			<form class="email-form" action="index.html" method="post">
+				<input class="d-none hidden-email" type="email" name="email-input" value="" placeholder="enter your email">
+				<input class="d-none hidden-submit" type="submit" name="email-submit" value="Email my Photos" class="btn btn-dark">
+			</form>
+
+			<div class="text-input titles">
+				<form class="title-submit" action="index.html" method="post">
+					<input class="title-value" maxlength="30"type="text" name="" value="" placeholder="Enter your title">
+					<input class="btn btn-dark" type="submit" name="" value="Add A Title!">
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="col-3">
+		<div class="camera">
 	    <video id="video">Video stream not available.</video>
 	    <button id="startbutton">Start</button>
 	  </div>
+	</div>
 
-		<div class="text-input">
-			<form class="" action="index.html" method="post">
-				<input type="text" name="" value="" placeholder="Photostrip Title">
-			</form>
+
+	<div class="col-2">
+
+
+
+	  <div class="output first">
+	    <img id="photo1" class="d-none photos">
+	  </div>
+		<div class="output">
+			<img id="photo2" class="d-none photos">
 		</div>
+		<div class="output">
+			<img id="photo3" class="d-none photos">
+		</div>
+		<div class="output">
+			<img id="photo4" class="d-none photos">
+		</div>
+		<div class="output">
+			<h4 class="photo-title" ></h4>
+		</div>
+	</div>
 
-	  <canvas id="canvas1">
-	  </canvas>
+
+
+
+</div>
+
+
+	<div>
+		<canvas id="canvas1">
+		</canvas>
 		<canvas id="canvas2">
 	  </canvas>
 		<canvas id="canvas3">
 	  </canvas>
 		<canvas id="canvas4">
 	  </canvas>
+		<canvas id="canvas5">
+		</canvas>
 	</div>
-
-	<div class="photoStrip col-4">
-	  <div class="output">
-	    <img id="photo1" alt="The screen capture will appear in this box.">
-	  </div>
-		<div class="output">
-			<img id="photo2" alt="The screen capture will appear in this box.">
-		</div>
-		<div class="output">
-			<img id="photo3" alt="The screen capture will appear in this box.">
-		</div>
-		<div class="output">
-			<img id="photo4" alt="The screen capture will appear in this box.">
-		</div>
-	</div>
-</div>
-
-  </div>
-
-
-
 
 
 <script src="./bundle.js"></script>

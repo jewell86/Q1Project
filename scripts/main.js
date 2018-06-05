@@ -1,144 +1,120 @@
 
 (function() {
-  let width = 320;
-  let height = 0;
-  let streaming = false;
-  let video = null;
-  let canvas1 = document.querySelector('#canvas1')
-  let canvas2 = document.querySelector('#canvas2')
-  let canvas3 = document.querySelector('#canvas3')
-  let canvas4 = document.querySelector('#canvas4')
-  let photo1 = document.querySelector("#photo1");
-  let photo2 = document.querySelector("#photo2");
-  let photo3 = document.querySelector("#photo3");
-  let photo4 = document.querySelector("#photo4");
-  let image1 = null
-  let image2 = null
-  let image3 = null
-  let image4 = null
-  let data1 = null
-  let data2 = null
-  let data3 = null
-  let data4 = null
-  let photo1string = null
-  let photo2string = null
-  let photo3string = null
-  let photo4string = null
+  let width = 420
+  let height = 400
+  let streaming = false
+  let video = null
+  let startButton = null
+  let paragraph = document.querySelector('.photo-title')
+  let titleSubmit = document.querySelector('.title-submit')
+  let titleValue = document.querySelector('.title-value')
 
-  var startButton = null;
+  let filters = Array.from(document.querySelectorAll('.filter-button'))
+  let photos = Array.from(document.querySelectorAll('.photos'))
 
+  filters.forEach(function(filter) {
+    filter.addEventListener('click', function(ev){
+      let newFilter = filter.dataset.filter
+      photos.forEach(function(photo) {
+      photo.removeAttribute("class")
+      photo.classList.add(newFilter)
+      })
+    })
+  })
 
   function startup() {
-    video = document.getElementById('video');
-    // canvas = document.getElementById('canvas');
-    // photo = document.getElementById('photo');
+    video = document.getElementById('video')
     startButton = document.getElementById('startbutton');
 
     navigator.getMedia = ( navigator.getUserMedia ||
                            navigator.webkitGetUserMedia ||
                            navigator.mozGetUserMedia ||
-                           navigator.msGetUserMedia);
-
+                           navigator.msGetUserMedia)
     navigator.getMedia(
       {
         video: true,
-        audio: false
+        audio: false,
+        width: 420,
+        height: 555,
       },
       function(stream) {
         if (navigator.mozGetUserMedia) {
-          video.mozSrcObject = stream;
+          video.mozSrcObject = stream
         } else {
-          var vendorURL = window.URL || window.webkitURL;
-          video.src = vendorURL.createObjectURL(stream);
+          var vendorURL = window.URL || window.webkitURL
+          video.src = vendorURL.createObjectURL(stream)
         }
-        video.play();
+        video.play()
       },
       function(err) {
-        console.log("An error occured! " + err);
+        console.log("An error occured! " + err)
       }
-    );
+
+    )
+
 
     video.addEventListener('canplay', function(ev){
       if (!streaming) {
-        height = video.videoHeight / (video.videoWidth/width);
+        height = video.videoHeight / (video.videoWidth/width)
         if (isNaN(height)) {
-          height = width / (4/3);
+          height = width / (4/3)
         }
-//canvas?
-        video.setAttribute('width', width);
-        video.setAttribute('height', height);
-        // canvas.setAttribute('width', width);
-        // canvas.setAttribute('height', height);
-        streaming = true;
+        video.setAttribute('width', width)
+        video.setAttribute('height', height)
+        streaming = true
       }
+    }, false)
+
+
+
+
+    titleSubmit.addEventListener('submit', function(event) {
+      paragraph.innerText = titleValue.value
+      event.preventDefault()
+    })
+
+    let photoData = [{ canvas : document.querySelector("#canvas1"), photo : document.querySelector("#photo1") },
+      { canvas : document.querySelector("#canvas2"), photo : document.querySelector("#photo2") },
+      { canvas : document.querySelector("#canvas3"), photo : document.querySelector("#photo3") },
+      { canvas : document.querySelector("#canvas4"), photo : document.querySelector("#photo4") }]
+    let index = 0
+    let currentPhoto = photoData[index]
+
+    startButton.addEventListener('click', function(ev){
+        window.setTimeout(function() { takePicture(currentPhoto) }, 1000)
+        ev.preventDefault();
     }, false);
 
-    let index = 0
+    function takePicture(currentPhoto) {
+      currentPhoto.photo.classList.remove("d-none")
+      let context = currentPhoto.canvas.getContext('2d')
+      context.drawImage(video,50,50,700,650,0,0,400,220)
+      let data = currentPhoto.canvas.toDataURL(`image${index+1}/png`)
 
+      currentPhoto.photo.setAttribute('src', data)
+      localStorage.setItem(`image${index+1}`, data.replace(/^data:image\/(png|jpg);base64,/, ""))
+      currentPhoto = photoData[index]
 
+      currentPhoto.canvas.classList.add('d-none')
+      if( index < 4){
+        index++
+        window.setTimeout(function () { takePicture(currentPhoto) }, 1000)
+      }
 
-    let params = [[ canvas1, data1, 'image1', photo1, 'str1', photo1string ],
-    [ canvas2, data2, 'image2', photo2, 'str2', photo2string ],
-    [ canvas3, data3, 'image3', photo3, 'str3', photo3string ],
-    [ canvas4, data4, 'image4', photo4, 'str4', photo4string ]]
-
-let parameter = params[index]
-
-
-
-  startButton.addEventListener('click', function(ev){
-      window.setTimeout(function() { takepicture(...parameter) }, 1000)
-      ev.preventDefault();
-  }, false);
-
-
-  function takepicture( can, dat, img, pho, strName, str) {
-    console.log("takepic");
-    let context = can.getContext('2d');
-
-    if (width && height) {
-    can.width = width;
-    can.height = height;
-    context.drawImage(video, 0, 0, width, height);
-    dat = can.toDataURL(`${img}/png`);
-    pho.setAttribute('src', dat);
-    can.classList.add('d-none')
-    str = dat.replace(/^data:image\/(png|jpg);base64,/, "")
-    localStorage.setItem(strName, str)
-    parameter = params[index]
-
-    if( index < 4){
-    index++
-    console.log(parameter)
-    window.setTimeout(function () { takepicture(...parameter) }, 1000)
-  }
-  }
+    }
 }
 
-
-}
-
-  window.addEventListener('load', startup, false);
-
-
+  window.addEventListener('load', startup, false)
 
 let hiddenEmail = document.querySelector('.hidden-email')
 let emailButton = document.querySelector('.email-button')
 let hiddenSubmit = document.querySelector('.hidden-submit')
-
 
 emailButton.addEventListener("click", function(){
   hiddenEmail.classList.remove('d-none')
   hiddenSubmit.classList.remove('d-none')
 
 })})()
-
-
-
-
-
-
-
 
 
 
