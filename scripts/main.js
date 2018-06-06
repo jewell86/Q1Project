@@ -8,8 +8,20 @@
   let paragraph = document.querySelector('.photo-title')
   let titleSubmit = document.querySelector('.title-submit')
   let titleValue = document.querySelector('.title-value')
+  let printButton = document.querySelector('.print-button')
+  let filters = Array.from(document.querySelectorAll('.filter-button'))
+  let photos = Array.from(document.querySelectorAll('.photos'))
+  let newFilter =
 
-
+  filters.forEach(function(filter) {
+    filter.addEventListener('click', function(ev){
+      newFilter = filter.dataset.filter
+      photos.forEach(function(photo) {
+      photo.removeAttribute("class")
+      photo.classList.add(newFilter)
+      })
+    })
+  })
 
   function startup() {
     video = document.getElementById('video')
@@ -39,6 +51,7 @@
         console.log("An error occured! " + err)
       }
     )
+
     video.addEventListener('canplay', function(ev){
       if (!streaming) {
         height = video.videoHeight / (video.videoWidth/width)
@@ -56,17 +69,20 @@
       event.preventDefault()
     })
 
-    let filters = Array.from(document.querySelectorAll('.filter-button'))
-    let photos = Array.from(document.querySelectorAll('.photos'))
+    // let hiddenEmail = document.querySelector('.hidden-email')
+    // let emailButton = document.querySelector('.email-button')
+    // let hiddenSubmit = document.querySelector('.hidden-submit')
+    //
+    //   emailButton.addEventListener("click", function(){
+    //   hiddenEmail.classList.remove('d-none')
+    //   hiddenSubmit.classList.remove('d-none')
+    //
+    // })
+    //
+    let filter = JSON.stringify(newFilter);
 
-    filters.forEach(function(filter) {
-      filter.addEventListener('click', function(ev){
-        var newFilter = filter.dataset.filter
-        photos.forEach(function(photo) {
-        photo.removeAttribute("class")
-        photo.classList.add(newFilter)
-        })
-      })
+    printButton.addEventListener('click', function(event) {
+      window.localStorage.setItem('filter', newFilter);
     })
 
     let photoData = [{ canvas : document.querySelector("#canvas1"), photo : document.querySelector("#photo1") },
@@ -75,7 +91,6 @@
       { canvas : document.querySelector("#canvas4"), photo : document.querySelector("#photo4") }]
     let index = 0
     let currentPhoto = photoData[index]
-    console.log(photoData[0])
 
     startButton.addEventListener('click', function(ev){
         window.setTimeout(function() { takePicture(currentPhoto) }, 1000)
@@ -95,21 +110,11 @@
         index++
         window.setTimeout(function () { takePicture(currentPhoto) }, 1000)
       }
-
     }
 }
+  window.addEventListener('load', startup, false)
 
-window.addEventListener('load', startup, false)
-
-let hiddenEmail = document.querySelector('.hidden-email')
-let emailButton = document.querySelector('.email-button')
-let hiddenSubmit = document.querySelector('.hidden-submit')
-
-emailButton.addEventListener("click", function(){
-  hiddenEmail.classList.remove('d-none')
-  hiddenSubmit.classList.remove('d-none')
-
-})})()
+})()
 
 
 
@@ -118,4 +123,4 @@ emailButton.addEventListener("click", function(){
 
 
 
-module.exports = main
+// module.exports = main
