@@ -7,34 +7,29 @@
   	<link rel="stylesheet" href="./print.css" type="text/css" media="all">
   </head>
   <body>
-    <script type="text/javascript" src="./scripts/main.js">
-
-    </script>
 
 
-    <input type="button"
-     onClick="window.print()"
-     value="Print This Page"/>
+
+    <script type="text/javascript" src="./scripts/main.js"></script>
+
+
 
 
     <div class="text-center">
   	  <div class="output">
-  	    <img id="photo1">
+  	    <img id="photo1" >
   	  </div>
   		<div class="output">
-  			<img id="photo2">
+  			<img id="photo2" >
   		</div>
   		<div class="output">
-  			<img id="photo3">
+  			<img id="photo3" >
   		</div>
   		<div class="output">
-  			<img id="photo4">
+  			<img id="photo4" >
   		</div>
       <h3 class="output"></h3>
   	</div>
-
-
-
 
     <script type="text/javascript">
       let photoFilters = window.localStorage.getItem('filter')
@@ -59,6 +54,9 @@
       paragraph = document.querySelector('h3')
       paragraph.innerText = titleValue
     </script>
+
+
+
 
 
   </body>

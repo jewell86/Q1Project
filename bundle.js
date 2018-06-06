@@ -7,6 +7,7 @@
   let newTitleValue
   let startButton = document.querySelector('#startbutton')
 
+
   function startup() {
     localStorage.clear()
     if(!!window.performance && window.performance.navigation.type == 2) {
@@ -15,7 +16,7 @@
     let width = 420
     let height = 400
     let streaming = false
-    video = document.getElementById('video')
+    let video = document.getElementById('video')
     startButton = document.getElementById('startbutton');
     navigator.getMedia = ( navigator.getUserMedia ||
                            navigator.webkitGetUserMedia ||
@@ -25,8 +26,7 @@
       {
         video: true,
         audio: false,
-        width: 420,
-        height: 555,
+
       },
       function(stream) {
         if (navigator.mozGetUserMedia) {
@@ -56,11 +56,9 @@
     titleSubmit.addEventListener('submit', function(event) {
       let paragraph = document.querySelector('.photo-title')
       let titleValue = document.querySelector('.title-value')
-      paragraph.innerText = titleValue.value
-      // window.locaStorage.setItem('titleValue', titleValue )
       event.preventDefault()
       newTitleValue = titleValue.value
-
+      paragraph.innerText = titleValue.value
     })
 
     startButton.addEventListener('click', function(ev){
@@ -80,8 +78,8 @@
     })
 
     printButton.addEventListener('click', function(event) {
-    window.localStorage.setItem('filter', newFilter)
-    window.localStorage.setItem('newTitleValue', newTitleValue)
+      window.localStorage.setItem('filter', newFilter)
+      window.localStorage.setItem('newTitleValue', newTitleValue)
     })
     }
 
