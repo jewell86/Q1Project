@@ -19,18 +19,21 @@
 
     <div class="text-center">
   	  <div class="output">
-  	    <img id="photo1" alt="The screen capture will appear in this box.">
+  	    <img id="photo1">
   	  </div>
   		<div class="output">
-  			<img id="photo2" alt="The screen capture will appear in this box.">
+  			<img id="photo2">
   		</div>
   		<div class="output">
-  			<img id="photo3" alt="The screen capture will appear in this box.">
+  			<img id="photo3">
   		</div>
   		<div class="output">
-  			<img id="photo4" alt="The screen capture will appear in this box.">
+  			<img id="photo4">
   		</div>
+      <h3 class="output"></h3>
   	</div>
+
+
 
 
     <script type="text/javascript">
@@ -51,6 +54,10 @@
       fourthPhoto = document.getElementById('photo4');
       fourthPhoto.src = "data:image/png;base64," + photo4;
       fourthPhoto.classList.add(photoFilters)
+      let titleValue = localStorage.getItem('newTitleValue')
+      console.log(titleValue)
+      paragraph = document.querySelector('h3')
+      paragraph.innerText = titleValue
     </script>
 
 

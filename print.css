@@ -1,8 +1,8 @@
 #photo1, #photo2, #photo3, #photo4{
-  border: 1px solid black;
-  box-shadow: 2px 2px 3px black;
+
   width:175px;
   height:225px;
+  margin-top:10px
 }
 
 #canvas {
@@ -19,4 +19,13 @@
 
 .none {
   filter: none;
+}
+
+body {
+  height: 1500px;
+  background-image: url("./images/photoStrip.png");
+  background-size: 555px 1110px;
+  background-repeat: no-repeat;
+  background-position: top center;
+  margin-right: 150px;
 }
