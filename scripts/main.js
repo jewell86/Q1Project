@@ -6,6 +6,7 @@
   let newTitleValue
   let startButton = document.querySelector('#startbutton')
   let saveButton = document.querySelector('.save-button')
+  let restartButton = document.querySelector('.restart-button')
 
 
   function startup() {
@@ -53,7 +54,7 @@
       }
     }, false)
 
-    const changeFilter = (event) => {
+    let changeFilter = (event) => {
       let photos = Array.from(document.querySelectorAll('.photos'))
       newFilter = event.target.dataset.filter
       photos.forEach(function(photo) {
@@ -86,6 +87,11 @@
       window.localStorage.setItem('filter', newFilter)
       window.localStorage.setItem('newTitleValue', newTitleValue)
     })
+
+    restartButton.addEventListener('click', function(){
+      location.reload()
+    })
+
     }
 
 

@@ -1,5 +1,4 @@
 #photo1, #photo2, #photo3, #photo4{
-
   width:175px;
   height:225px;
   margin-top:10px
@@ -32,4 +31,12 @@ body {
   background-repeat: no-repeat;
   background-position: top center;
   margin-right: 150px;
+}
+
+.photo-title {
+  /* width: 140px;
+  /* height: 85px; */ */
+  word-wrap: break-word;
+  text-align: center;
+  font-family: "Lobster", cursive;
 }
