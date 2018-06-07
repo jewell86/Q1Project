@@ -5,6 +5,10 @@
   margin-top:10px
 }
 
+.first {
+  margin-top: 30px;
+}
+
 #canvas {
   display:none;
 }
@@ -22,7 +26,7 @@
 }
 
 body {
-  height: 1500px;
+  /* height: 1500px; */
   background-image: url("./images/photoStrip.png");
   background-size: 555px 1110px;
   background-repeat: no-repeat;

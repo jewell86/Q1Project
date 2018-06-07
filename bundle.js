@@ -6,6 +6,7 @@
   let newFilter
   let newTitleValue
   let startButton = document.querySelector('#startbutton')
+  let saveButton = document.querySelector('.save-button')
 
 
   function startup() {
@@ -53,6 +54,17 @@
       }
     }, false)
 
+    const changeFilter = (event) => {
+      let photos = Array.from(document.querySelectorAll('.photos'))
+      newFilter = event.target.dataset.filter
+      photos.forEach(function(photo) {
+        photo.removeAttribute("class")
+        photo.classList.add(newFilter)
+      })
+    }
+
+    filters.forEach(element => element.addEventListener('click', changeFilter))
+
     titleSubmit.addEventListener('submit', function(event) {
       let paragraph = document.querySelector('.photo-title')
       let titleValue = document.querySelector('.title-value')
@@ -61,27 +73,23 @@
       paragraph.innerText = titleValue.value
     })
 
-    startButton.addEventListener('click', function(ev){
+    startButton.addEventListener('click',  function(ev){
         window.setTimeout(function() { takePicture(currentPhoto) }, 1000)
         ev.preventDefault();
     }, false);
-
-    filters.forEach(function(filter) {
-      filter.addEventListener('click', function(ev){
-        let photos = Array.from(document.querySelectorAll('.photos'))
-        newFilter = filter.dataset.filter
-        photos.forEach(function(photo) {
-        photo.removeAttribute("class")
-        photo.classList.add(newFilter)
-        })
-      })
-    })
 
     printButton.addEventListener('click', function(event) {
       window.localStorage.setItem('filter', newFilter)
       window.localStorage.setItem('newTitleValue', newTitleValue)
     })
+
+    saveButton.addEventListener('click', function(event) {
+      window.localStorage.setItem('filter', newFilter)
+      window.localStorage.setItem('newTitleValue', newTitleValue)
+    })
     }
+
+
 
     let photoData = [{ canvas : document.querySelector("#canvas1"), photo : document.querySelector("#photo1") },
       { canvas : document.querySelector("#canvas2"), photo : document.querySelector("#photo2") },

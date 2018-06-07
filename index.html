@@ -5,6 +5,9 @@
 	<meta charset='utf-8'>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 	<link rel="stylesheet" href="./main.css" type="text/css" media="all">
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Lobster');
+	</style>
 </head>
 
 <body>
@@ -14,11 +17,10 @@
 		<div class="buttonz">
 
 		<div class="function-buttons">
-			<a id="dl-btn" href="#" download="glorious_selfie.png"><button type="button" class="btn btn-dark" name="button">Save</button></a>
-			<iframe src="./print.html" style="display:none;" name="frame"></iframe>
-			<button onClick="window.open(frames['frame'].print())" type="button" name="button" class="btn btn-dark print-button">Print</button>
+			<a href="./print.html"><button type="button" class="btn btn-dark save-button" name="button">Save</button></a>
+			<a href="./print.html"><button type="button" name="button" class="btn btn-dark print-button">Print</button></a>
 			<button type="button" name="button" class="btn btn-dark">Restart</button>
-			<button type="button" name="button" class="btn btn-dark">Email</button>
+
 		</div>
 
 		<div class="filter-buttons">
@@ -27,14 +29,10 @@
 			<button type="button" data-filter="none" name="filter-button" class="btn btn-light filter-button">Color</button>
 		</div>
 
-		<form class="email-form" action="index.html" method="post">
-			<input class="d-none hidden-email" type="email" name="email-input" value="" placeholder="enter your email">
-			<input class="d-none hidden-submit" type="submit" name="email-submit" value="Email my Photos" class="btn btn-dark">
-		</form>
-
 		<div class="text-input titles">
 			<form class="title-submit" action="index.html" method="post">
-				<input class="title-value" maxlength="30"type="text" name="" value="" placeholder="Enter your title">					<input class="btn btn-dark" type="submit" name="" value="Add A Title!">
+				<input class="title-value" maxlength="30"type="text" name="" value="" placeholder="Enter your title">
+				<input class="btn btn-dark title-button" type="submit" name="" value="Add A Title!">
 			</form>
 		</div>
 
@@ -42,9 +40,11 @@
 	</div>
 
 	<div class="col-3">
+
+		
 		<div class="camera">
 	    <video src="" id="video">Video stream not available.</video>
-	    <button id="startbutton">Start</button>
+	    <button class="btn btn-light" id="startbutton">Start</button>
 	  </div>
 	</div>
 
