@@ -8,6 +8,7 @@
   let startButton = document.querySelector('#startbutton')
   let saveButton = document.querySelector('.save-button')
   let restartButton = document.querySelector('.restart-button')
+  let camera = document.querySelector('.camera')
 
 
   function startup() {
@@ -34,7 +35,7 @@
         if (navigator.mozGetUserMedia) {
           video.mozSrcObject = stream
         } else {
-          var vendorURL = window.URL || window.webkitURL
+          let vendorURL = window.URL || window.webkitURL
           video.src = vendorURL.createObjectURL(stream)
         }
         video.play()
@@ -55,11 +56,14 @@
       }
     }, false)
 
-    let changeFilter = (event) => {
+    const changeFilter = (event) => {
+      console.log('in change filter')
       let photos = Array.from(document.querySelectorAll('.photos'))
       newFilter = event.target.dataset.filter
       photos.forEach(function(photo) {
-        photo.removeAttribute("class")
+        photo.classList.remove("sepia")
+        photo.classList.remove("grayscale")
+        photo.classList.remove("none")
         photo.classList.add(newFilter)
       })
     }
@@ -73,11 +77,23 @@
       newTitleValue = titleValue.value
       paragraph.innerText = titleValue.value
     })
+    let reload = false
 
     startButton.addEventListener('click',  function(ev){
+      if(reload === true){
+         index = 0
+         window.setTimeout(function() { takePicture(currentPhoto) }, 1000)
+         ev.preventDefault();
+         currentPhoto.canvas.classList.add('d-none')
+         index++
+      }else{
         window.setTimeout(function() { takePicture(currentPhoto) }, 1000)
         ev.preventDefault();
-    }, false);
+        currentPhoto.canvas.classList.add('d-none')
+        index++
+        reload = true
+      }
+    }, true);
 
     printButton.addEventListener('click', function(event) {
       window.localStorage.setItem('filter', newFilter)
@@ -92,10 +108,7 @@
     restartButton.addEventListener('click', function(){
       location.reload()
     })
-
     }
-
-
 
     let photoData = [{ canvas : document.querySelector("#canvas1"), photo : document.querySelector("#photo1") },
       { canvas : document.querySelector("#canvas2"), photo : document.querySelector("#photo2") },
@@ -105,18 +118,34 @@
     let currentPhoto = photoData[index]
 
     function takePicture(currentPhoto) {
-      currentPhoto.photo.classList.remove("d-none")
-      let context = currentPhoto.canvas.getContext('2d')
-      context.drawImage(video,50,50,700,650,0,0,400,220)
-      let data = currentPhoto.canvas.toDataURL(`image${index+1}/png`)
-      currentPhoto.photo.setAttribute('src', data)
-      localStorage.setItem(`image${index+1}`, data.replace(/^data:image\/(png|jpg);base64,/, ""))
-      currentPhoto = photoData[index]
-      currentPhoto.canvas.classList.add('d-none')
-      if( index < 4){
+      if( index <= 4){
+        flashToggle()
+        videoToggle()
+        currentPhoto.photo.classList.remove("d-none")
+        let context = currentPhoto.canvas.getContext('2d')
+        context.drawImage(video,50,50,700,650,0,0,400,220)
+        let data = currentPhoto.canvas.toDataURL(`image${index}/png`)
+        currentPhoto.photo.setAttribute('src', data)
+        localStorage.setItem(`image${index}`, data.replace(/^data:image\/(png|jpg);base64,/, ""))
+        currentPhoto = photoData[index]
+        currentPhoto.canvas.classList.add('d-none')
         index++
         window.setTimeout(function () { takePicture(currentPhoto) }, 1000)
       }
+        console.log('end of function');
+    }
+
+    function handleChange(input){
+      if (newTitleValue === null) {alert("Value should be between 0 - 100")
+      }
+    }
+
+    function flashToggle() {
+      camera.classList.toggle('flash');
+    }
+
+    function videoToggle(){
+      video.classList.toggle('flash')
     }
 
 },{}]},{},[1]);

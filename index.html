@@ -12,12 +12,13 @@
 
 <body>
 
+
 <div class="row">
 	<div class="col-5">
 		<div class="buttonz">
 
 		<div class="function-buttons">
-			<a href="./print.html"><button type="button" class="btn btn-dark save-button" name="button">Save</button></a>
+			<a href="./print.html"><button type="button"  class="btn btn-dark save-button" name="button">Save</button></a>
 			<a href="./print.html"><button type="button" name="button" class="btn btn-dark print-button">Print</button></a>
 			<button type="button" name="button" class="btn btn-dark restart-button">Restart</button>
 
@@ -31,20 +32,21 @@
 
 		<div class="text-input titles">
 			<form class="title-submit" action="index.html" method="post">
-				<input class="title-value" maxlength="30"type="text" name="" value="" placeholder="Enter your title">
-				<input class="btn btn-dark title-button" type="submit" name="" value="Add A Title!">
+				<input required class="title-value" maxlength="30"type="text" name="" value="" placeholder="Enter your title">
+				<input class="btn btn-dark title-button" onclick="handleChange()" type="submit" name="" value="Add A Title!">
 			</form>
 		</div>
+
 
 		</div>
 	</div>
 
 	<div class="col-3">
-		
 
 
-		<div class="camera">
-	    <video src="" id="video">Video stream not available.</video>
+
+		<div class="camera convoblur">
+	    <video src="" id="video" class="flash">Video stream not available.</video>
 	    <button class="btn btn-light" id="startbutton">Start</button>
 	  </div>
 	</div>
