@@ -4,6 +4,8 @@ by Jewell White
   Photobooth is a web-based program that brings an old school photo booth directly to you. Create, customize, save & print fun photo strips to share with your friends!
 
   Future features - change customizable backgrounds, draw on your photos, and use this program on your andriod or iphone. 
+  
+  Built using JavaScript, HTML & CSS
 
 ## Using PhotoBooth
 
